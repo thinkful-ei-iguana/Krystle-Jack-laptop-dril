@@ -8,7 +8,6 @@
 
     return (
         <li className="feature__item">
-            
                 <div onClick={() => handleUpdate(featureTitle, item)}>
                     {item.name}
                     ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
