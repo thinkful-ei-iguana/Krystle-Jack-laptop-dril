@@ -1,78 +1,26 @@
 import React from 'react';
-import slugify from 'slugify';
+import Total from './Total'
+import Summary from './Summary'
 
 
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  });
+export default function SummarySection (props){
+  const {selected} = props;
 
-/*const features = Object.keys(this.props.features).map((feature, idx) => {
-    const featureHash = feature + '-' + idx;
-    const options = this.props.features[feature].map(item => {
-      const itemHash = slugify(JSON.stringify(item));
-      return (
-        <div key={itemHash} className="feature__item">
-          <input
-            type="radio"
-            id={itemHash}
-            className="feature__option"
-            name={slugify(feature)}
-            checked={item.name === this.state.selected[feature].name}
-            onChange={e => this.updateFeature(feature, item)}
-          />
-          <label htmlFor={itemHash} className="feature__label">
-            {item.name} ({USCurrencyFormat.format(item.cost)})
-          </label>
-        </div>
-      );
-    });
-
-    return (
-      <fieldset className="feature" key={featureHash}>
-        <legend className="feature__name">
-          <h3>{feature}</h3>
-        </legend>
-        {options}
-      </fieldset>
+  const summary = Object.keys(selected)
+    .map(key =>
+      <Summary
+        key={key}
+        featureTitle={key}
+        selected={selected} /> 
     );
-  });*/
 
- const Selection = () => {
-     
-    
-        const features = Object.keys(this.props.features).map((feature, idx) => {
-            const featureHash = feature + '-' + idx;
-            const options = this.props.features[feature].map(item => {
-              const itemHash = slugify(JSON.stringify(item));
-              return (
-                <div key={itemHash} className="feature__item">
-                  <input
-                    type="radio"
-                    id={itemHash}
-                    className="feature__option"
-                    name={slugify(feature)}
-                    checked={item.name === this.state.selected[feature].name}
-                    onChange={e => this.updateFeature(feature, item)}
-                  />
-                  <label htmlFor={itemHash} className="feature__label">
-                    {item.name} ({USCurrencyFormat.format(item.cost)})
-                  </label>
-                </div>
-              );
-            });
-        
-            return (
-              <fieldset className="feature" key={featureHash}>
-                <legend className="feature__name">
-                  <h3>{feature}</h3>
-                </legend>
-                {options}
-              </fieldset>
-            );
-          });
 
-          return features;
+
+  return (
+    <section className="main__summary">
+      <h3>NEW GREENLEAF 2018</h3>
+      {summary}
+      <Total selected={selected} />
+    </section>
+  );
 }
-
-export default Selection;
